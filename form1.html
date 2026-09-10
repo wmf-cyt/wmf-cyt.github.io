@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>中一數學 | 主題選擇</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 16px;
+            touch-action: manipulation;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #8d99ae;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding: 6px 12px;
+            border: 1px solid #2a3a5c;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+            border-color: #4ecca3;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #4ecca3 0%, #2ec4b6 50%, #e94560 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(78, 204, 163, 0.2);
+        }
+
+        .subtitle {
+            color: #8d99ae;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .game-card {
+            background: #16213e;
+            border: 2px solid #0f3460;
+            border-radius: 18px;
+            padding: 20px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #4ecca3;
+            box-shadow: 0 18px 35px rgba(78, 204, 163, 0.25);
+        }
+
+        .game-card:active {
+            transform: scale(0.98);
+        }
+
+        .game-card.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #0f3460;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+            margin-top: 4px;
+            margin-bottom: 14px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .icon-box {
+            transform: scale(1.1);
+        }
+
+        .topic-1 .icon-box { color: #4ecca3; border: 2px solid #4ecca3; }
+        .locked .icon-box { color: #566379; border: 2px solid #566379; }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: #8d99ae;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            text-align: center;
+            min-height: 40px;
+        }
+
+        .btn-play {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .topic-1 .btn-play { background: #4ecca3; color: #0f172a; }
+        .locked .btn-play { background: #2a3550; color: #8d99ae; }
+
+        .game-card:hover .btn-play {
+            filter: brightness(1.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            color: #53637b;
+            font-size: 13px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 22px;
+            }
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回主頁</a>
+        <header>
+            <h1 class="main-title">📘 中一數學</h1>
+            <div class="subtitle">請選擇練習主題</div>
+        </header>
+
+        <main class="cards-grid">
+            <!-- 數字的整除性 -->
+            <a href="divisibility.html" class="game-card topic-1">
+                <div class="icon-box">÷</div>
+                <h2 class="card-title">數字的整除性</h2>
+                <p class="card-desc">透過小遊戲練習 2、3、4、5、6、8、9、10 的整除判斷法！</p>
+                <div class="btn-play">進入主題 🚀</div>
+            </a>
+
+            <!-- 未來主題佔位 -->
+            <div class="game-card locked">
+                <div class="icon-box">🔒</div>
+                <h2 class="card-title">敬請期待</h2>
+                <p class="card-desc">更多中一數學主題練習即將推出！</p>
+                <div class="btn-play">未開放</div>
+            </div>
+
+            <div class="game-card locked">
+                <div class="icon-box">🔒</div>
+                <h2 class="card-title">敬請期待</h2>
+                <p class="card-desc">更多中一數學主題練習即將推出！</p>
+                <div class="btn-play">未開放</div>
+            </div>
+        </main>
+
+        <footer>
+            <p>wmf-cyt.github.io &copy; 中一數學微練習系列</p>
+        </footer>
+    </div>
+
+</body>
+</html>
