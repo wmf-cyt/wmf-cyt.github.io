@@ -111,12 +111,14 @@
             transform: scale(1.1);
         }
 
+        .card-2 .icon-box { color: #06b6d4; border: 2px solid #06b6d4; }
         .card-3 .icon-box { color: #2ec4b6; border: 2px solid #2ec4b6; }
         .card-4 .icon-box { color: #38bdf8; border: 2px solid #38bdf8; }
         .card-5 .icon-box { color: #8b5cf6; border: 2px solid #8b5cf6; }
         .card-6 .icon-box { color: #ff9f1c; border: 2px solid #ff9f1c; }
         .card-8 .icon-box { color: #fbbf24; border: 2px solid #fbbf24; }
         .card-9 .icon-box { color: #e94560; border: 2px solid #e94560; }
+        .card-10 .icon-box { color: #a78bfa; border: 2px solid #a78bfa; }
 
         .card-title {
             font-size: 22px;
@@ -149,12 +151,14 @@
             gap: 8px;
         }
 
+        .card-2 .btn-play { background: #06b6d4; color: #ffffff; }
         .card-3 .btn-play { background: #2ec4b6; color: #ffffff; }
         .card-4 .btn-play { background: #38bdf8; color: #0f172a; }
         .card-5 .btn-play { background: #8b5cf6; color: #ffffff; }
         .card-6 .btn-play { background: #ff9f1c; color: #ffffff; }
         .card-8 .btn-play { background: #fbbf24; color: #0f172a; }
         .card-9 .btn-play { background: #e94560; color: #ffffff; }
+        .card-10 .btn-play { background: #a78bfa; color: #0f172a; }
 
         .game-card:hover .btn-play {
             filter: brightness(1.15);
@@ -187,6 +191,14 @@
         </header>
 
         <main class="cards-grid">
+            <!-- 2 的整除性挑戰 -->
+            <a href="Divisible2.html" class="game-card card-2">
+                <div class="icon-box">÷2</div>
+                <h2 class="card-title">2 的密碼解鎖戰</h2>
+                <p class="card-desc">最基礎的判斷法！個位數是偶數（0、2、4、6、8），就能被 2 整除！</p>
+                <div class="btn-play">進入遊戲 🚀</div>
+            </a>
+
             <!-- 3 的整除性挑戰 -->
             <a href="Divisible3.html" class="game-card card-3">
                 <div class="icon-box">÷3</div>
@@ -231,7 +243,15 @@
             <a href="Disvisible9.html" class="game-card card-9">
                 <div class="icon-box">÷9</div>
                 <h2 class="card-title">9 的密碼解鎖戰</h2>
-                <p class="card-desc">數位求和總和需為 9 的倍數！挑戰你的快速心算與極限反應力。</p>
+                <p class="card-desc">數位求和總和需為 9 的倍數！</p>
+                <div class="btn-play">進入遊戲 🚀</div>
+            </a>
+
+            <!-- 10 的整除性挑戰 -->
+            <a href="Divisible10.html" class="game-card card-10">
+                <div class="icon-box">÷10</div>
+                <h2 class="card-title">10 的密碼解鎖戰</h2>
+                <p class="card-desc">終極簡單挑戰！個位數是 0，就能被 10 整除，考驗你的極速反應！</p>
                 <div class="btn-play">進入遊戲 🚀</div>
             </a>
         </main>
