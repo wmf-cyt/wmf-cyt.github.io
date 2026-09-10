@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>數學密碼解鎖戰 | Divisibility Challenge Hub</title>
+    <title>中學數學微練習系列 | 主頁</title>
     <style>
         * {
             box-sizing: border-box;
@@ -40,7 +40,7 @@
 
         .main-title {
             color: #ffffff;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 6px;
@@ -58,7 +58,7 @@
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 18px;
             width: 100%;
             margin-bottom: 24px;
@@ -91,6 +91,12 @@
             transform: scale(0.98);
         }
 
+        .game-card.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .icon-box {
             width: 56px;
             height: 56px;
@@ -111,14 +117,13 @@
             transform: scale(1.1);
         }
 
-        .card-2 .icon-box { color: #06b6d4; border: 2px solid #06b6d4; }
-        .card-3 .icon-box { color: #2ec4b6; border: 2px solid #2ec4b6; }
-        .card-4 .icon-box { color: #38bdf8; border: 2px solid #38bdf8; }
-        .card-5 .icon-box { color: #8b5cf6; border: 2px solid #8b5cf6; }
-        .card-6 .icon-box { color: #ff9f1c; border: 2px solid #ff9f1c; }
-        .card-8 .icon-box { color: #fbbf24; border: 2px solid #fbbf24; }
-        .card-9 .icon-box { color: #e94560; border: 2px solid #e94560; }
-        .card-10 .icon-box { color: #a78bfa; border: 2px solid #a78bfa; }
+        .form-1 .icon-box { color: #4ecca3; border: 2px solid #4ecca3; }
+        .form-2 .icon-box { color: #38bdf8; border: 2px solid #38bdf8; }
+        .form-3 .icon-box { color: #8b5cf6; border: 2px solid #8b5cf6; }
+        .form-4 .icon-box { color: #ff9f1c; border: 2px solid #ff9f1c; }
+        .form-5 .icon-box { color: #e94560; border: 2px solid #e94560; }
+        .form-6 .icon-box { color: #fbbf24; border: 2px solid #fbbf24; }
+        .locked .icon-box { color: #566379; border: 2px solid #566379; }
 
         .card-title {
             font-size: 17px;
@@ -151,14 +156,13 @@
             gap: 6px;
         }
 
-        .card-2 .btn-play { background: #06b6d4; color: #ffffff; }
-        .card-3 .btn-play { background: #2ec4b6; color: #ffffff; }
-        .card-4 .btn-play { background: #38bdf8; color: #0f172a; }
-        .card-5 .btn-play { background: #8b5cf6; color: #ffffff; }
-        .card-6 .btn-play { background: #ff9f1c; color: #ffffff; }
-        .card-8 .btn-play { background: #fbbf24; color: #0f172a; }
-        .card-9 .btn-play { background: #e94560; color: #ffffff; }
-        .card-10 .btn-play { background: #a78bfa; color: #0f172a; }
+        .form-1 .btn-play { background: #4ecca3; color: #0f172a; }
+        .form-2 .btn-play { background: #38bdf8; color: #0f172a; }
+        .form-3 .btn-play { background: #8b5cf6; color: #ffffff; }
+        .form-4 .btn-play { background: #ff9f1c; color: #ffffff; }
+        .form-5 .btn-play { background: #e94560; color: #ffffff; }
+        .form-6 .btn-play { background: #fbbf24; color: #0f172a; }
+        .locked .btn-play { background: #2a3550; color: #8d99ae; }
 
         .game-card:hover .btn-play {
             filter: brightness(1.15);
@@ -187,78 +191,62 @@
 
     <div class="container">
         <header>
-            <h1 class="main-title">🎮 數學密碼解鎖戰</h1>
-            <div class="subtitle">中一數學微練習系列 | 請選擇挑戰遊戲</div>
+            <h1 class="main-title">🎓 中學數學微練習系列</h1>
+            <div class="subtitle">請選擇年級</div>
         </header>
 
         <main class="cards-grid">
-            <!-- 2 的整除性挑戰 -->
-            <a href="Divisible2.html" class="game-card card-2">
-                <div class="icon-box">÷2</div>
-                <h2 class="card-title">2 的密碼解鎖戰</h2>
-                <p class="card-desc">最基礎的判斷法！個位數是偶數（0、2、4、6、8），就能被 2 整除！</p>
-                <div class="btn-play">進入遊戲 🚀</div>
+            <!-- 中一 -->
+            <a href="form1.html" class="game-card form-1">
+                <div class="icon-box">一</div>
+                <h2 class="card-title">中一</h2>
+                <p class="card-desc">數字的整除性等基礎數學主題練習</p>
+                <div class="btn-play">進入 🚀</div>
             </a>
 
-            <!-- 3 的整除性挑戰 -->
-            <a href="Divisible3.html" class="game-card card-3">
-                <div class="icon-box">÷3</div>
-                <h2 class="card-title">3 的密碼解鎖戰</h2>
-                <p class="card-desc">運用「數位求和法」，快速計算所有數位加總，判斷數字能否被 3 整除！</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
+            <!-- 中二 -->
+            <div class="game-card locked form-2">
+                <div class="icon-box">二</div>
+                <h2 class="card-title">中二</h2>
+                <p class="card-desc">敬請期待更多練習主題</p>
+                <div class="btn-play">未開放</div>
+            </div>
 
-            <!-- 4 的整除性挑戰 -->
-            <a href="Divisible4.html" class="game-card card-4">
-                <div class="icon-box">÷4</div>
-                <h2 class="card-title">4 的密碼解鎖戰</h2>
-                <p class="card-desc">只看「末兩位數」！判斷末兩位數能否被 4 整除，即可破解密碼。</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
+            <!-- 中三 -->
+            <div class="game-card locked form-3">
+                <div class="icon-box">三</div>
+                <h2 class="card-title">中三</h2>
+                <p class="card-desc">敬請期待更多練習主題</p>
+                <div class="btn-play">未開放</div>
+            </div>
 
-            <!-- 5 的整除性挑戰 -->
-            <a href="Divisible5.html" class="game-card card-5">
-                <div class="icon-box">÷5</div>
-                <h2 class="card-title">5 的密碼解鎖戰</h2>
-                <p class="card-desc">最簡單的判斷法！個位數是 0 或 5，就能被 5 整除，考驗你的反應速度！</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
+            <!-- 中四 -->
+            <div class="game-card locked form-4">
+                <div class="icon-box">四</div>
+                <h2 class="card-title">中四</h2>
+                <p class="card-desc">敬請期待更多練習主題</p>
+                <div class="btn-play">未開放</div>
+            </div>
 
-            <!-- 6 的整除性挑戰 -->
-            <a href="Disvisible6.html" class="game-card card-6">
-                <div class="icon-box">÷6</div>
-                <h2 class="card-title">6 的密碼解鎖戰</h2>
-                <p class="card-desc">雙重檢測！必須同時判斷末位是否為「偶數」以及數位和是否能被 3 整除。</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
+            <!-- 中五 -->
+            <div class="game-card locked form-5">
+                <div class="icon-box">五</div>
+                <h2 class="card-title">中五</h2>
+                <p class="card-desc">敬請期待更多練習主題</p>
+                <div class="btn-play">未開放</div>
+            </div>
 
-            <!-- 8 的整除性挑戰 -->
-            <a href="Divisible8.html" class="game-card card-8">
-                <div class="icon-box">÷8</div>
-                <h2 class="card-title">8 的密碼解鎖戰</h2>
-                <p class="card-desc">進階挑戰！只看「末三位數」，判斷末三位數能否被 8 整除。</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
-
-            <!-- 9 的整除性挑戰 -->
-            <a href="Disvisible9.html" class="game-card card-9">
-                <div class="icon-box">÷9</div>
-                <h2 class="card-title">9 的密碼解鎖戰</h2>
-                <p class="card-desc">數位求和總和需為 9 的倍數！挑戰你的快速心算與極限反應力。</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
-
-            <!-- 10 的整除性挑戰 -->
-            <a href="Divisible10.html" class="game-card card-10">
-                <div class="icon-box">÷10</div>
-                <h2 class="card-title">10 的密碼解鎖戰</h2>
-                <p class="card-desc">終極簡單挑戰！個位數是 0，就能被 10 整除，考驗你的極速反應！</p>
-                <div class="btn-play">進入遊戲 🚀</div>
-            </a>
+            <!-- 中六 -->
+            <div class="game-card locked form-6">
+                <div class="icon-box">六</div>
+                <h2 class="card-title">中六</h2>
+                <p class="card-desc">敬請期待更多練習主題</p>
+                <div class="btn-play">未開放</div>
+            </div>
         </main>
 
         <footer>
-            <p>wmf-cyt.github.io &copy; 中一數學微練習系列</p>
+            <p>wmf-cyt.github.io &copy; 中學數學微練習系列</p>
         </footer>
     </div>
 
