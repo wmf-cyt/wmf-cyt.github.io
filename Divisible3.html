@@ -2,17 +2,12 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <!-- 加入 user-scalable=no 防止 iPad 快速連點時意外放大畫面 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3的密碼解鎖戰 | Divisibility Challenge</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            /* 禁用 iOS 長按選取文字及點擊高亮灰色方塊 */
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
         body {
             background-color: #1a1a2e;
@@ -22,7 +17,6 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            touch-action: manipulation;
         }
         .game-container {
             background-color: #16213e;
@@ -55,13 +49,13 @@
             font-weight: bold;
         }
         .number-display {
-            font-size: 44px;
+            font-size: 48px;
             font-weight: bold;
             color: #4ecca3;
             background: #0f3460;
             padding: 20px;
             border-radius: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 15px;
             word-break: break-all;
         }
@@ -85,19 +79,20 @@
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.1s, background-color 0.2s;
-            touch-action: manipulation;
         }
         button:active {
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
         .btn-yes {
             background-color: #2ec4b6;
             color: #fff;
         }
+        .btn-yes:hover { background-color: #20a396; }
         .btn-no {
             background-color: #e71d36;
             color: #fff;
         }
+        .btn-no:hover { background-color: #c4142b; }
         .btn-hint {
             background-color: #ff9f1c;
             color: #fff;
@@ -141,11 +136,11 @@
         <div class="hint-box" id="hint-text">點擊下方按鈕開始判斷！</div>
 
         <div class="btn-group">
-            <button class="btn-yes" id="btn-yes">可以整除 (YES)</button>
-            <button class="btn-no" id="btn-no">不能整除 (NO)</button>
+            <button class="btn-yes" onclick="checkAnswer(true)">可以整除 (YES)</button>
+            <button class="btn-no" onclick="checkAnswer(false)">不能整除 (NO)</button>
         </div>
 
-        <button class="btn-hint" id="btn-hint">💡 提示 (位數求和法)</button>
+        <button class="btn-hint" onclick="showHint()">💡 提示 (位數求和法)</button>
         <div class="feedback" id="feedback"></div>
     </div>
 
@@ -155,7 +150,7 @@
         <p>最終得分：<span id="final-score" style="font-size: 24px; color: #4ecca3; font-weight:bold;">0</span></p>
         <p>答對題數：<span id="correct-count">0</span> / <span id="total-count">0</span></p>
         <p>評級：<span id="rank-text" style="color: #f1c40f; font-weight:bold;">-</span></p>
-        <button class="btn-restart" id="btn-restart">再玩一次</button>
+        <button class="btn-restart" onclick="startGame()">再玩一次</button>
     </div>
 </div>
 
@@ -186,7 +181,7 @@
 
         nextQuestion();
 
-        if (timer) clearInterval(timer);
+        clearInterval(timer);
         timer = setInterval(() => {
             timeLeft--;
             document.getElementById('timer').innerText = timeLeft;
@@ -197,7 +192,8 @@
     }
 
     function generateNumber() {
-        const digits = Math.floor(Math.random() * 4) + 3;
+        // 隨機生成 3 到 6 位數，增加挑戰性
+        const digits = Math.floor(Math.random() * 4) + 3; // 3, 4, 5, 6 位數
         const min = Math.pow(10, digits - 1);
         const max = Math.pow(10, digits) - 1;
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -206,7 +202,11 @@
     function nextQuestion() {
         currentNum = generateNumber();
         document.getElementById('current-number').innerText = currentNum.toLocaleString();
+        
+        // 判斷是否可被3整除
         isDivisble = (currentNum % 3 === 0);
+        
+        // 重置提示
         document.getElementById('hint-text').innerText = '請快速估算此數能否被 3 整除';
     }
 
@@ -216,21 +216,19 @@
     }
 
     function checkAnswer(userAnswer) {
-        if (timeLeft <= 0) return;
-        
         totalAnswered++;
         const feedbackEl = document.getElementById('feedback');
 
         if (userAnswer === isDivisble) {
             combo++;
             correctAnswers++;
-            let points = 100 + (combo > 1 ? (combo - 1) * 20 : 0);
+            let points = 100 + (combo > 1 ? (combo - 1) * 20 : 0); // 連擊獎勵
             score += points;
             feedbackEl.innerText = `✅ 正確！+${points}分`;
             feedbackEl.className = 'feedback correct';
         } else {
             combo = 0;
-            score = Math.max(0, score - 50);
+            score = Math.max(0, score - 50); // 答錯扣分
             feedbackEl.innerText = `❌ 錯誤！`;
             feedbackEl.className = 'feedback wrong';
         }
@@ -244,17 +242,13 @@
     function endGame() {
         clearInterval(timer);
         document.getElementById('game-screen').classList.add('hidden');
-        document.getElementById('result-screen').classList.add('hidden');
-        
-        // 稍微延遲顯示結算畫面，確保 iOS 渲染正常
-        setTimeout(() => {
-            document.getElementById('result-screen').classList.remove('hidden');
-        }, 50);
+        document.getElementById('result-screen').classList.remove('hidden');
 
         document.getElementById('final-score').innerText = score;
         document.getElementById('correct-count').innerText = correctAnswers;
         document.getElementById('total-count').innerText = totalAnswered;
 
+        // 計算評級
         let rank = '初級解密員';
         if (score >= 1500) rank = 'S級 數學密碼大師 🏆';
         else if (score >= 1000) rank = 'A級 進階破譯專家 🥇';
@@ -263,18 +257,8 @@
         document.getElementById('rank-text').innerText = rank;
     }
 
-    // 綁定按鈕事件 (避免直接在 HTML寫 onclick 導致 iOS 相容問題)
-    document.getElementById('btn-yes').addEventListener('click', () => checkAnswer(true));
-    document.getElementById('btn-no').addEventListener('click', () => checkAnswer(false));
-    document.getElementById('btn-hint').addEventListener('click', showHint);
-    document.getElementById('btn-restart').addEventListener('click', startGame);
-
-    // 相容 iPad/iOS 的啟動機制 (DOMContentLoaded 比 window.onload 更穩定)
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', startGame);
-    } else {
-        startGame();
-    }
+    // 網頁載入時自動開始
+    window.onload = startGame;
 </script>
 
 </body>
