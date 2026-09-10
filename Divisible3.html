@@ -220,16 +220,32 @@
             background: #7c3aed;
         }
 
+        .result-btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
         .btn-restart {
             background: #f43f5e;
             color: #ffffff;
-            width: 100%;
+            flex: 1;
             padding: 14px;
-            margin-top: 8px;
         }
 
         .btn-restart:hover {
             background: #e11d48;
+        }
+
+        .btn-home {
+            background: #38bdf8;
+            color: #0f172a;
+            flex: 1;
+            padding: 14px;
+        }
+
+        .btn-home:hover {
+            background: #0ea5e9;
         }
 
         .feedback {
@@ -322,7 +338,10 @@
             </div>
         </div>
 
-        <button class="btn-restart" id="btn-restart">🔄 再玩一次</button>
+        <div class="result-btn-group">
+            <button class="btn-restart" id="btn-restart">🔄 再玩一次</button>
+            <button class="btn-home" id="btn-home">🏠 返回主頁</button>
+        </div>
     </div>
 </div>
 
@@ -401,8 +420,8 @@
             feedbackEl.className = 'feedback correct';
         } else {
             combo = 0;
-            score = Math.max(0, score - 50);
-            feedbackEl.innerText = `❌ 錯誤！-50分`;
+            score = Math.max(0, score - 100);
+            feedbackEl.innerText = `❌ 錯誤！-100分`;
             feedbackEl.className = 'feedback wrong';
         }
 
@@ -435,6 +454,9 @@
     document.getElementById('btn-no').addEventListener('click', () => checkAnswer(false));
     document.getElementById('btn-hint').addEventListener('click', showHint);
     document.getElementById('btn-restart').addEventListener('click', startGame);
+    document.getElementById('btn-home').addEventListener('click', () => {
+        window.location.href = 'https://wmf-cyt.github.io';
+    });
 </script>
 </body>
 </html>
